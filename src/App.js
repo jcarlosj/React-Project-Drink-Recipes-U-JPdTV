@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+
+/** Component */
+import FormSearch from './components/FormSearch';
 
 function App() {
   return (
-    <h2>Recetas de bebidas</h2>
+    <Fragment>
+      <h2>Recetas de bebidas</h2>
+      <FormSearch />
+    </Fragment>
   );
 }
 
