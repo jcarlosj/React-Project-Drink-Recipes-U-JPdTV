@@ -4,10 +4,7 @@ import { CategoriesContext } from '../context/categories-context';
 const FormSearch = () => {
 
     /** Hook: Context */
-    const { data, setData } = useContext( CategoriesContext );     // Makes context data available 
-
-    console .log( `Datos de '${ data }' disponibles en el Componente 'FormSearch'`);
-    alert( `Datos de '${ data }' disponibles en el Componente 'FormSearch'`);
+    const {} = useContext( CategoriesContext );     // Makes context data available 
 
     return (
         <div className="collapse navbar-collapse d-flex justify-content-end" id="navbarTogglerDemo02">

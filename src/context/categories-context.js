@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 /** Create Context */
 export const CategoriesContext = createContext();
@@ -7,14 +7,29 @@ export const CategoriesContext = createContext();
 const CategoriesProvider = ( props ) => {
 
     /** Hook: Define State */
-    const [ data, setData ] = useState( 'Categories Context' );
+    const [ categories, setCategories ] = useState( [] );
+
+    /** Hook: Traking State 'categories' */
+    useEffect( () => {
+
+        /** Consulta API para obtener categorias */
+        const getDataAPICategories = async () => {
+            const 
+                url = `https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list`,
+                resolve = await fetch( url ),
+                data = await resolve .json();
+            
+            console .log( 'API Data', data );
+            setCategories( data .drinks );      // Update State
+
+        }
+        getDataAPICategories();
+
+    }, [] );
 
     return (
         <CategoriesContext .Provider
-            value={{
-                data,
-                setData
-            }}
+            value={{}}
         >
             { props .children }
         </ CategoriesContext .Provider>
