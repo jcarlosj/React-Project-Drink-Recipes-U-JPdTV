@@ -1,8 +1,14 @@
 import React from 'react';
 
-const Header = () => {
+/** Components */
+import FormSearch from './FormSearch';
+
+const Header = ({ title }) => {     // Destructuring Props
     return (
-        <h1>Header</h1>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <a className="navbar-brand" href="#">{ title }</a>
+            <FormSearch />
+        </nav>
     );
 }
 
