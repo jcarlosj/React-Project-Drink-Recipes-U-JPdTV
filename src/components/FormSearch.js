@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CategoriesContext } from '../context/categories-context';
 
 const FormSearch = () => {
+
+    /** Hook: Context */
+    const { data, setData } = useContext( CategoriesContext );     // Makes context data available 
+
+    console .log( `Datos de '${ data }' disponibles en el Componente 'FormSearch'`);
+    alert( `Datos de '${ data }' disponibles en el Componente 'FormSearch'`);
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
         
