@@ -1,3 +1,9 @@
+# Drink Recipes
+
+Este proyecto consume la API https://www.thecocktaildb.com/ a través de la cual podemos consultar las recetas de bebidas alcohólicas de acuerdo a los términos de búsqueda proporcionados a través del formulario.
+
+La funcionalidad se desarrolla haciendo uso de conceptos como Components (Carga Condicional), Props, State, Hook (useState, useEffect, useContext). (v.16.12.0).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
