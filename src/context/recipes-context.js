@@ -6,12 +6,18 @@ export const RecipesContext = createContext();
 /** Provider: State & Funcions */
 const RecipesProvider = ( props ) => {
 
-    const data = 'Data RecipesContext';
+    /** Hook: Define State */
+    const 
+        [ recipes, setRecipes ] = useState([]),
+        [ searchRecipes, setSearchRecipes ] = useState({
+            ingredient: '',
+            category: ''
+        });
 
     return(
         <RecipesContext.Provider
             value={{
-                data
+                setSearchRecipes
             }}
         >
             { props .children }

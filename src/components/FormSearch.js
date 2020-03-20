@@ -9,9 +9,9 @@ const FormSearch = () => {
     /** Hook: Context */
     const 
         { categories } = useContext( CategoriesContext ),     // Makes context data available 
-        { data } = useContext( RecipesContext );     // Makes context data available 
+        { setSearchRecipes } = useContext( RecipesContext );     // Makes context recipe available 
 
-    console .log( 'Data RecipesContext', data );
+    console .log( 'Data RecipesContext', setSearchRecipes );
 
     /** Hook: Define State */
     const [ dataForm , setDataForm ] = useState({
@@ -31,7 +31,13 @@ const FormSearch = () => {
 
     return (
         <div className="collapse navbar-collapse d-flex justify-content-end" id="navbarTogglerDemo02">
-            <form className="form-inline my-2 my-lg-0">
+            <form 
+                className="form-inline my-2 my-lg-0"
+                onSubmit={ event => {
+                    event .preventDefault();
+                    setSearchRecipes( dataForm );
+                }}
+            >
                 <input
                     type="text" 
                     name="ingredient"
