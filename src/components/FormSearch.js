@@ -1,10 +1,17 @@
 import React, { useContext, useState } from 'react';
+
+/** Contexts */
 import { CategoriesContext } from '../context/categories-context';
+import { RecipesContext } from '../context/recipes-context';
 
 const FormSearch = () => {
 
     /** Hook: Context */
-    const { categories } = useContext( CategoriesContext );     // Makes context data available 
+    const 
+        { categories } = useContext( CategoriesContext ),     // Makes context data available 
+        { data } = useContext( RecipesContext );     // Makes context data available 
+
+    console .log( 'Data RecipesContext', data );
 
     /** Hook: Define State */
     const [ dataForm , setDataForm ] = useState({
