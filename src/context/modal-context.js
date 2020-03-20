@@ -7,7 +7,9 @@ export const ModalContext = createContext();
 const ModalProvider = ( props ) => {
 
     /** Hook: Define State */
-    const [ idRecipe, setIdRecipe ] = useState( null );
+    const 
+        [ idRecipe, setIdRecipe ] = useState( null ),
+        [ detailRecipe, setDetailRecipe ] = useState( {} );
 
     /** Hook: Traking State 'idRecipe' */
     useEffect( () => {
@@ -24,6 +26,7 @@ const ModalProvider = ( props ) => {
                 data = await resolve .json();
             
             console .log( 'API Data', data );
+            setDetailRecipe( data .drinks[ 0 ] );   // Update State 'detailsRecipe'
 
         }
         getDataAPIRecipe();
