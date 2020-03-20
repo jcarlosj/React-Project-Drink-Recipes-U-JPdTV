@@ -59,6 +59,24 @@ const Recipe = ({ recipe }) => {        // Destructuring Props
         { idDrink, strDrink, strDrinkThumb } = recipe,      // Props
         { strInstructions } = detailRecipe;     // State 'detailRecipe' of 'ModalContext'
 
+    /** Methods or Functions */
+    const showIngredientList = () => {
+        let ingredients = [];
+
+        for( let i = 0; i < 16; i++ ) {
+            /** In case it is not null, add the ingredients */
+            if( detailRecipe[ `strIngredient${ i }` ] ) {
+                ingredients .push(
+                    <li key={ i }>
+                        <strong>{ detailRecipe[ `strIngredient${ i }` ] }</strong> <i>{ detailRecipe[ `strMeasure${ i }` ] }</i>
+                    </li>
+                );
+            }
+        }
+
+        return ingredients;
+    }
+
     return(     
                     
         <div className="col mb-4">
@@ -90,16 +108,26 @@ const Recipe = ({ recipe }) => {        // Destructuring Props
                         >
                             
                             <div className="card mb-3">
-                                <img src={ strDrinkThumb } className="card-img-top" alt={ strDrink } />
-                                <div className="card-body">
-                                    <h4 className="card-title">{ strDrink }</h4>
-                                    { strInstructions
-                                        ?   <>
-                                                <h5 className="card-title">Instructions</h5>
-                                                <p className="card-text">{ strInstructions }</p>
-                                            </>
-                                        :   null
-                                    }
+                                <div className="row no-gutters">
+                                    <div className="col-md-4">
+                                        <img src={ strDrinkThumb } className="card-img" alt={ strDrink } />
+                                    </div>
+                                    <div className="col-md-8">
+                                    <div className="card-body">
+                                        <h4 className="card-title">{ strDrink }</h4>
+                                        { strInstructions
+                                            ?   <>
+                                                    <h5 className="card-title">Instructions</h5>
+                                                    <p className="card-text">{ strInstructions }</p>
+                                                </>
+                                            :   null
+                                        }
+                                        <h5 className="card-title">Ingredients</h5>
+                                        <ul>
+                                            { showIngredientList() }
+                                        </ul>
+                                    </div>
+                                    </div>
                                 </div>
                             </div>
 
