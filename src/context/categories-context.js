@@ -29,7 +29,9 @@ const CategoriesProvider = ( props ) => {
 
     return (
         <CategoriesContext .Provider
-            value={{}}
+            value={{
+                categories
+            }}
         >
             { props .children }
         </ CategoriesContext .Provider>

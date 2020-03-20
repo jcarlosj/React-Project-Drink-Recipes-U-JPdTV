@@ -4,7 +4,9 @@ import { CategoriesContext } from '../context/categories-context';
 const FormSearch = () => {
 
     /** Hook: Context */
-    const {} = useContext( CategoriesContext );     // Makes context data available 
+    const { categories } = useContext( CategoriesContext );     // Makes context data available 
+
+    console .log( 'Categorias', categories );
 
     return (
         <div className="collapse navbar-collapse d-flex justify-content-end" id="navbarTogglerDemo02">
@@ -20,6 +22,12 @@ const FormSearch = () => {
                     className="form-control mr-sm-2"
                 >
                     <option value="">Selecciona categoría...</option>
+                    { categories .map( ( category, index ) => (
+                        <option 
+                            key={ index } 
+                            value={ category .strCategory }
+                        >{ category .strCategory }</option>
+                    ))}
                 </select>
                 <button 
                     type="submit"
