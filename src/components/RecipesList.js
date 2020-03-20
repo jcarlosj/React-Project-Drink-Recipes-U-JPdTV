@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 
 /** Context */
 import { RecipesContext } from '../context/recipes-context';
+import { ModalContext } from '../context/modal-context';
 
 /** Components */
 import Recipe from '../components/Recipe';
@@ -9,9 +10,12 @@ import Recipe from '../components/Recipe';
 const RecipesList = () => {
 
     /** Hook: Context */
-    const { recipes } = useContext( RecipesContext );   // Makes context data available 
+    const 
+        { recipes } = useContext( RecipesContext ),   // Makes context data available 
+        { data } = useContext( ModalContext );        // Makes context data available 
 
     console .log( 'RecipesList', recipes );
+    console .log( 'ModalContext', data );
 
     return (
         <div className="container mt-5 mb-5">
