@@ -9,9 +9,7 @@ const FormSearch = () => {
     /** Hook: Context */
     const 
         { categories } = useContext( CategoriesContext ),     // Makes context data available 
-        { setSearchRecipes } = useContext( RecipesContext );     // Makes context recipe available 
-
-    console .log( 'Data RecipesContext', setSearchRecipes );
+        { setSearchRecipes, setApiQuery } = useContext( RecipesContext );     // Makes context recipe available 
 
     /** Hook: Define State */
     const [ dataForm , setDataForm ] = useState({
@@ -36,6 +34,7 @@ const FormSearch = () => {
                 onSubmit={ event => {
                     event .preventDefault();
                     setSearchRecipes( dataForm );
+                    setApiQuery( true );
                 }}
             >
                 <input

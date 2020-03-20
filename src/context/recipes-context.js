@@ -12,30 +12,37 @@ const RecipesProvider = ( props ) => {
         [ searchRecipes, setSearchRecipes ] = useState({
             ingredient: '',
             category: ''
-        });
+        }),
+        [ apiQuery, setApiQuery ] = useState( false );  // Controla cuando permitir realizar la consulta
     
     const { ingredient, category } = searchRecipes;     // Destructuring datos obtenidos del formulario
 
     /** Hook: Traking State */
     useEffect( () => {
 
-        /** Consulta API para obtener categorias */
-        const getDataAPIRecipes = async () => {
-            const 
-                url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ ingredient }&c=${ category }`,
-                resolve = await fetch( url ),
-                data = await resolve .json();
+        if( apiQuery ) {
             
-            console .log( 'API Data', data );   
+            /** Consulta API para obtener categorias */
+            const getDataAPIRecipes = async () => {
+                const 
+                    url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ ingredient }&c=${ category }`,
+                    resolve = await fetch( url ),
+                    data = await resolve .json();
+                
+                console .log( 'API Data', data );   
+                setRecipes( data .drinks );         // Update State 'recipes'
+            }
+            getDataAPIRecipes();
+
         }
-        getDataAPIRecipes();
 
     }, [ searchRecipes ] );
 
     return(
         <RecipesContext.Provider
             value={{
-                setSearchRecipes
+                setSearchRecipes,
+                setApiQuery
             }}
         >
             { props .children }
