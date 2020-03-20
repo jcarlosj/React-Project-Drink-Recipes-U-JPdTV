@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 /** Create Context */
 export const RecipesContext = createContext();
@@ -13,6 +13,24 @@ const RecipesProvider = ( props ) => {
             ingredient: '',
             category: ''
         });
+    
+    const { ingredient, category } = searchRecipes;     // Destructuring datos obtenidos del formulario
+
+    /** Hook: Traking State */
+    useEffect( () => {
+
+        /** Consulta API para obtener categorias */
+        const getDataAPIRecipes = async () => {
+            const 
+                url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ ingredient }&c=${ category }`,
+                resolve = await fetch( url ),
+                data = await resolve .json();
+            
+            console .log( 'API Data', data );   
+        }
+        getDataAPIRecipes();
+
+    }, [ searchRecipes ] );
 
     return(
         <RecipesContext.Provider
