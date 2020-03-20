@@ -11,8 +11,6 @@ const Recipe = ({ recipe }) => {        // Destructuring Props
     /** Validate Data */
     if( Object .keys( recipe ) .length === 0 ) return null;
 
-    console .log( 'ModalContext', setIdRecipe );
-
     const { idDrink, strDrink, strDrinkThumb } = recipe;
 
     return(     
