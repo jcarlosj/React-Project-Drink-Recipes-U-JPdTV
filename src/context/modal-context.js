@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 
 /** Create Context */
 export const ModalContext = createContext();
@@ -6,11 +6,12 @@ export const ModalContext = createContext();
 /** Provider: State & Funcions */
 const ModalProvider = ( props ) => {
 
-    const data = 'Hey ModalProvider';
+    /** Hook: Define State */
+    const [ idRecipe, setIdRecipe ] = useState( null );
 
     return (
         <ModalContext .Provider
-            value={{ data }}
+            value={{ setIdRecipe }}
         >
             { props .children }
         </ModalContext .Provider>

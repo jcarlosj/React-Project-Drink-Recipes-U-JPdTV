@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+/** Context */
+import { ModalContext } from '../context/modal-context';
 
 const Recipe = ({ recipe }) => {        // Destructuring Props
 
+    /** Hook: Context */
+    const { setIdRecipe } = useContext( ModalContext );        // Makes context data available 
+
+    /** Validate Data */
     if( Object .keys( recipe ) .length === 0 ) return null;
+
+    console .log( 'ModalContext', setIdRecipe );
 
     const { idDrink, strDrink, strDrinkThumb } = recipe;
 
@@ -17,6 +26,7 @@ const Recipe = ({ recipe }) => {        // Destructuring Props
                     <button 
                         type="button" 
                         className="btn btn-secondary btn-lg btn-block"
+                        onClick={ () => setIdRecipe( idDrink ) }
                     >Ver receta</button>
                 </div>
             </div>
