@@ -50,12 +50,14 @@ const Recipe = ({ recipe }) => {        // Destructuring Props
     };
 
     /** Hook: Context */
-    const { setIdRecipe } = useContext( ModalContext );        // Makes context data available 
+    const { setIdRecipe, detailRecipe, setDetailRecipe } = useContext( ModalContext );        // Makes context data available 
 
     /** Validate Data */
     if( Object .keys( recipe ) .length === 0 ) return null;
 
-    const { idDrink, strDrink, strDrinkThumb } = recipe;
+    const   /** Destructuring */
+        { idDrink, strDrink, strDrinkThumb } = recipe,      // Props
+        { strInstructions } = detailRecipe;     // State 'detailRecipe' of 'ModalContext'
 
     return(     
                     
@@ -78,6 +80,7 @@ const Recipe = ({ recipe }) => {        // Destructuring Props
                         open={ open }               // Open the modal window
                         onClose={ () => {
                             handleClose();          // Close the modal window
+                            setDetailRecipe({});    // Update State 'detailRecipe' of 'ModalContext'
                             setIdRecipe( null );    // Update State 'idRecipe' of 'ModalContext'
                         }}
                     >
@@ -85,7 +88,21 @@ const Recipe = ({ recipe }) => {        // Destructuring Props
                             style={ modalStyle }          // Modal window position CSS style
                             className={ classes .paper }  // General CSS styles of the modal window ('paper' css class name)
                         >
-                            <h2>Dentro de la ventana modal</h2>
+                            
+                            <div className="card mb-3">
+                                <img src={ strDrinkThumb } className="card-img-top" alt={ strDrink } />
+                                <div className="card-body">
+                                    <h4 className="card-title">{ strDrink }</h4>
+                                    { strInstructions
+                                        ?   <>
+                                                <h5 className="card-title">Instructions</h5>
+                                                <p className="card-text">{ strInstructions }</p>
+                                            </>
+                                        :   null
+                                    }
+                                </div>
+                            </div>
+
                         </div>
                     </Modal>
                 </div>

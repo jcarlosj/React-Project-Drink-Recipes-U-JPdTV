@@ -35,7 +35,11 @@ const ModalProvider = ( props ) => {
 
     return (
         <ModalContext .Provider
-            value={{ setIdRecipe }}
+            value={{ 
+                detailRecipe,
+                setIdRecipe,
+                setDetailRecipe
+            }}
         >
             { props .children }
         </ModalContext .Provider>
